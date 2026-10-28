@@ -27,8 +27,12 @@ Java.]
 
 | Prueba | Resultado esperado | Resultado obtenido |
 |---|---|---|
-| [Informe de las 8 tiendas] | [El total que da el enunciado] | [...] |
-| [Una tienda que no existe] | [...] | [...] |
+| Informe de 8 tiendas | Informe de las 8 sin errores | Da los informes sin problemas |
+| Una tienda que no existe | Error en la tienda que no existe | Sale el mensaje de error de la tienda que no existe |
+| Tiempo de espera de 0s | Error de todos los informes | Sale el mensaje de error de las 8 tiendas |
+|  - - -  |  - - -  |  - - -  |
+|  - - -  |  - - -  |  - - -  |
+|  - - -  |  - - -  |  - - -  |
 
 ## Tiempos
 

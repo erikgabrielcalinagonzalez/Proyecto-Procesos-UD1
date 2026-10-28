@@ -24,5 +24,14 @@ public class CashRegister {
         // TODO fase 4: para cada ticket, del 1 a tickets, esperar la pausa, escribir en la salida
         //      estándar "número;céntimos" con un importe aleatorio y anotar en la salida de error
         //      la hora (TIME) y el número del ticket. Al terminar, anotar también la hora.
+
+        for (int i = 1; i <= tickets; i++) {
+            Thread.sleep(pause);
+            String ticket = "ticket " + i + " ";
+            String cents = "importe " + random + ".";
+            System.out.println(ticket + cents);
+            System.err.println(LocalTime.now().format(TIME) + " Caja escribe ticket " + i);
+        }
+        System.err.println(LocalTime.now().format(TIME) + " Caja termina");
     }
 }

@@ -18,8 +18,16 @@ public class LiveCashRegister {
         // TODO fase 4: ejecutar los dos escenarios con runScenario(), escribiendo antes cuál es.
         //      Escenario 1, caja lenta y registro rápido: 5 tickets; pausa de la caja, 500 ms,
         //      y del registro, 0.
+
+        System.out.println("== Escenario 1: caja lenta (500 ms), ticket rápido ==");
+        runScenario("5", "500", "0");
+
         //      Escenario 2, caja rápida y registro lento: 10 tickets; pausa de la caja, 0, y del
         //      registro, 300 ms.
+
+        System.out.println("== Escenario 2: caja rápida, ticket lento (300 ms) ==");
+        runScenario("10", "0",  "300");
+
     }
 
     /**
@@ -34,6 +42,16 @@ public class LiveCashRegister {
     static void runScenario(String tickets, String registerPause, String ledgerPause)
             throws IOException, InterruptedException {
         // TODO fase 4
+        ProcessBuilder CashRegister = new ProcessBuilder(SalesReport.javaCommand("CashRegister", tickets, registerPause));
+        ProcessBuilder Ledger = new ProcessBuilder(SalesReport.javaCommand("Ledger", ledgerPause));
+
+        Ledger.redirectError(ProcessBuilder.Redirect.INHERIT);
+        CashRegister.redirectError(ProcessBuilder.Redirect.INHERIT);
+
+        List<Process> procesos = ProcessBuilder.startPipeline(List.of(CashRegister, Ledger));
+        for (Process p : procesos) {
+            p.waitFor();
+        }
     }
 
     /**
